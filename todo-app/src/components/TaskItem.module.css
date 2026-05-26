@@ -1,0 +1,17 @@
+.item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-border);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.text {
+  flex: 1;
+}

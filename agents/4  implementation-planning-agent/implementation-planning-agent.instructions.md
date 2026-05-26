@@ -1,4 +1,5 @@
 ---
+assistant_id: agent-004-impl-planning
 name: implementation-planning-agent
 description: Transforms approved architecture into detailed, dependency-ordered implementation plan
 version: 1.0.0

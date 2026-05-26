@@ -1,4 +1,5 @@
 ---
+assistant_id: agent-008-pr
 name: pr-agent
 description: Automatic Pull Request creation and merging to complete SDLC cycle
 version: 1.0.0

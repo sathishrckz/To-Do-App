@@ -1,4 +1,5 @@
 ---
+assistant_id: agent-006-review
 name: review-agent
 description: Comprehensive code review and quality assurance before PR creation
 version: 1.0.0
