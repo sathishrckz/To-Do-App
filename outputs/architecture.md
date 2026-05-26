@@ -11,7 +11,7 @@ The To-Do App is a single-page React application (SPA) that allows a single unau
 - Functional components with hooks exclusively (`useState`, `useEffect`, custom hooks)
 - Flat `src/components/` folder structure for simplicity
 - `uuid` npm package for task ID generation
-- Jest + React Testing Library for unit testing
+- Vitest + React Testing Library for unit testing
 - Inline warning banner for localStorage errors
 - Tasks appended to the bottom of the list (chronological order)
 
@@ -78,12 +78,12 @@ graph LR
 
 | Component | Responsibility | Technology | Dependencies |
 |-----------|---------------|------------|--------------|
-| `App.jsx` | Root state owner; orchestrates all child components | React 18 | `useLocalStorage`, all components |
+| `App.jsx` | Root state owner; orchestrates all child components; generates task IDs | React 18 | `useLocalStorage`, `uuid`, all components |
 | `TaskInput.jsx` | Controlled input field + disabled-aware Add button | React | None |
 | `TaskList.jsx` | Renders ordered list of tasks | React | `TaskItem` |
 | `TaskItem.jsx` | Renders a single task row | React | None |
 | `StorageBanner.jsx` | Displays inline warning when localStorage fails | React | None |
-| `useLocalStorage.js` | Reads/writes tasks to localStorage; surfaces errors | React hooks | `uuid` |
+| `useLocalStorage.js` | Reads/writes tasks to localStorage; surfaces errors | React hooks | None |
 
 ---
 
@@ -101,11 +101,9 @@ graph LR
 ### Testing
 | Technology | Choice | Rationale |
 |------------|--------|-----------|
-| Test Runner | Jest | Industry standard, integrates with Vite via `vitest` or `babel-jest` |
+| Test Runner | Vitest | Shares Vite config — zero extra transform setup; faster cold start than Jest |
 | Component Testing | React Testing Library | Tests user behaviour, not implementation details |
-| Coverage | Istanbul (built into Jest) | Tracks coverage thresholds |
-
-> **Note**: With Vite, prefer **Vitest** over Jest — it shares the Vite config, eliminates transform setup, and runs significantly faster. Architecture uses Vitest as the test runner.
+| Coverage | V8 (built into Vitest) | Fast native coverage; no Istanbul transform overhead |
 
 ### DevOps / Quality
 | Tool | Purpose |
@@ -177,7 +175,7 @@ No external API. All data is client-side.
 
 | Key | Type | Description |
 |-----|------|-------------|
-| `todo-app-tasks` | `JSON string` | Serialised array of Task objects |
+| `todo-app:tasks` | `JSON string` | Serialised array of Task objects |
 
 ### Task Object Schema
 
@@ -193,7 +191,7 @@ No external API. All data is client-side.
 
 ```js
 // useLocalStorage.js
-const [tasks, setTasks, storageError] = useLocalStorage('todo-app-tasks', []);
+const [tasks, setTasks, storageError] = useLocalStorage('todo-app:tasks', []);
 // Returns: [currentValue, setter, errorMessage | null]
 ```
 
@@ -205,7 +203,7 @@ No database. Browser localStorage is the sole persistence layer.
 
 | Aspect | Detail |
 |--------|--------|
-| Storage Key | `todo-app-tasks` |
+| Storage Key | `todo-app:tasks` |
 | Format | JSON-serialised array |
 | Max Size | ~5MB (browser-enforced) |
 | Scope | Origin-scoped (`localhost` or production domain) |
@@ -271,6 +269,7 @@ To-Do-App/
 │   └── favicon.ico
 ├── src/
 │   ├── components/
+│   │   ├── ErrorBoundary.jsx
 │   │   ├── TaskInput.jsx
 │   │   ├── TaskInput.module.css
 │   │   ├── TaskList.jsx
@@ -290,9 +289,10 @@ To-Do-App/
 │   ├── TaskItem.test.jsx
 │   └── useLocalStorage.test.js
 ├── index.html
-├── vite.config.js
-├── vitest.config.js
-└── package.json
+├── vite.config.js          # includes vitest `test` config
+├── .eslintrc.js            # react, react-hooks plugins
+├── .prettierrc
+└── package.json            # scripts: dev, build, preview, test, lint
 ```
 
 ---
