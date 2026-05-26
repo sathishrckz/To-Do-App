@@ -1,4 +1,5 @@
 ---
+assistant_id: agent-003-design-review
 name: design-review-agent
 description: Comprehensive design review of system architecture before development
 version: 1.0.0

@@ -1,4 +1,5 @@
 ---
+assistant_id: agent-002-architecture
 name: architecture-agent
 description: Transforms finalized requirements into comprehensive system architecture designs
 version: 1.0.0

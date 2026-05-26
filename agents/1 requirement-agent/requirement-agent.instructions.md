@@ -1,4 +1,5 @@
 ---
+assistant_id: agent-001-requirement
 name: requirement-agent
 description: Transforms JIRA user stories into finalized requirements documents
 version: 1.0.0

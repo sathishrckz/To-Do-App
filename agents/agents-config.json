@@ -1,0 +1,84 @@
+{
+  "agents": [
+    {
+      "assistant_id": "agent-001-requirement",
+      "name": "requirement-agent",
+      "path": "./agents/1 requirement-agent/requirement-agent.instructions.md",
+      "description": "Transforms JIRA user stories into finalized requirements documents",
+      "enabled": true,
+      "execution": "claude-code-cli"
+    },
+    {
+      "assistant_id": "agent-002-architecture",
+      "name": "architecture-agent",
+      "path": "./agents/2 architecture-agent/architecture-agent.instructions.md",
+      "description": "Transforms finalized requirements into comprehensive system architecture designs",
+      "enabled": false,
+      "execution": "claude-code-cli"
+    },
+    {
+      "assistant_id": "agent-003-design-review",
+      "name": "design-review-agent",
+      "path": "./agents/3 design-review-agent/design-review-agent.instructions.md",
+      "description": "Comprehensive design review of system architecture before development",
+      "enabled": false,
+      "execution": "claude-code-cli"
+    },
+    {
+      "assistant_id": "agent-004-impl-planning",
+      "name": "implementation-planning-agent",
+      "path": "./agents/4  implementation-planning-agent/implementation-planning-agent.instructions.md",
+      "description": "Transforms approved architecture into detailed, dependency-ordered implementation plan",
+      "enabled": false,
+      "execution": "claude-code-cli"
+    },
+    {
+      "assistant_id": "agent-005-implementation",
+      "name": "implementation-agent",
+      "path": "./agents/5 implementation-agent/implementation-agent.instructions.md",
+      "description": "Transforms implementation plan into production-ready code with human approval loops",
+      "enabled": false,
+      "execution": "claude-code-cli"
+    },
+    {
+      "assistant_id": "agent-006-review",
+      "name": "review-agent",
+      "path": "./agents/6 review-agent/review-agent.instructions.md",
+      "description": "Comprehensive code review and quality assurance before PR creation",
+      "enabled": false,
+      "execution": "claude-code-cli"
+    },
+    {
+      "assistant_id": "agent-007-verify",
+      "name": "verify-agent",
+      "path": "./agents/7 verify-agent/verify-agent.instructions.md",
+      "description": "Verification and quality assurance with comprehensive testing suite",
+      "enabled": false,
+      "execution": "claude-code-cli"
+    },
+    {
+      "assistant_id": "agent-008-pr",
+      "name": "pr-agent",
+      "path": "./agents/8 pr-agent/pr-agent.instructions.md",
+      "description": "Automatic Pull Request creation and merging to complete SDLC cycle",
+      "enabled": false,
+      "execution": "claude-code-cli"
+    }
+  ],
+  "orchestrator": {
+    "assistant_id": "orchestrator-todo-app",
+    "name": "orchestrator",
+    "path": "./agents/orchestrator.instructions.md",
+    "description": "Main entry point orchestrator for To-Do-App SDLC pipeline - routes requests to appropriate agents",
+    "enabled": false,
+    "execution": "claude-code-cli",
+    "role": "Pipeline Router & Coordinator"
+  },
+  "metadata": {
+    "project": "To-Do-App",
+    "created": "2026-05-22",
+    "version": "1.0.0",
+    "total_agents": 8,
+    "orchestrator_enabled": true
+  }
+}

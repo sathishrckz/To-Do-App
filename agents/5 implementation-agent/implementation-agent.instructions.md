@@ -1,4 +1,5 @@
 ---
+assistant_id: agent-005-implementation
 name: implementation-agent
 description: Transforms implementation plan into production-ready code with human approval loops
 version: 1.0.0

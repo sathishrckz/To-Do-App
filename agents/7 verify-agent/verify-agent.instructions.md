@@ -1,4 +1,5 @@
 ---
+assistant_id: agent-007-verify
 name: verify-agent
 description: Verification and quality assurance with comprehensive testing suite
 version: 1.0.0
